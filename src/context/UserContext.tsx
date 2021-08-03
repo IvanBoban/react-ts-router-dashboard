@@ -1,12 +1,11 @@
 import React from "react";
 
-interface UserContextProps {
-  name: string | undefined;
-  updateContext: (key: keyof UserContextState, value: any) => void;
-}
-
 interface UserContextState {
   name: string | undefined;
+}
+
+interface UserContextProps extends UserContextState {
+  updateContext: (key: keyof UserContextState, value: any) => void;
 }
 
 export const UserContext = React.createContext<UserContextProps>({
@@ -23,7 +22,7 @@ export const UserContextProvider: React.FC = ({ children }) => {
     setState((currentState) => {
       return {
         ...currentState,
-        key: value,
+        [key]: value,
       };
     });
   };

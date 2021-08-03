@@ -1,12 +1,18 @@
 import React from "react";
 
 import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "./context/AuthContext";
+import { GlobalUiContextProvider } from "./context/GlobalUIContext";
 import Router from "./router";
 function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <GlobalUiContextProvider>
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </AuthContextProvider>
+    </GlobalUiContextProvider>
   );
 }
 
